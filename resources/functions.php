@@ -6,12 +6,12 @@ function redirect($location){
 
 function query($sql){
 	global $conn;
-	return msqli_query($conn,$sql);
+	return mysqli_query($conn,$sql);
 }
 
-function confirm($result){
+function confirm($send_query){
 	global $conn;
-	if(!$result){
+	if(!$send_query){
 		die("QUERY FAILED " . mysqli_error($conn));
 	}
 }
@@ -23,4 +23,13 @@ function escape_string($string){
 
 function fetch_array($send_query){
 	return mysqli_fetch_array($send_query);
+}
+
+function get_products(){
+	$query = query("SELECT * FROM products");
+	confirm($query);
+
+	while($row=fetch_array($query)){
+		
+	}
 }
