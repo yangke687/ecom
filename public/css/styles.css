@@ -2,7 +2,8 @@
 	height: 165px;
 }
 
-.thumbnail .caption h4{
+.thumbnail .caption h4,
+.thumbnail .caption h3{
 	text-transform: capitalize;
 }
 
