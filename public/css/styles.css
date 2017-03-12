@@ -5,3 +5,7 @@
 .thumbnail .caption h4{
 	text-transform: capitalize;
 }
+
+.thumbnail .caption-full h4 a{
+	text-transform: capitalize;
+}
