@@ -58,8 +58,9 @@
         <p><?php echo $row['short_desc']; ?></p>
 
    
-    <form action="">
+    <form action="cart.php">
         <div class="form-group">
+            <input type="hidden" name="id" value="<?php echo $row['product_id']; ?>">
             <input type="submit" class="btn btn-primary" value="ADD TO CART">
         </div>
     </form>

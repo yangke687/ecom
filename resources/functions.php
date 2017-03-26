@@ -57,7 +57,7 @@ $product = <<<DELIMETER
             <h4><a href="item.php?id=${row['product_id']}">${row['product_title']}</a>
             </h4>
             <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-           	<a class="btn btn-primary" href="item.php?id=${row['product_id']}">Add to cart</a>
+           	<a class="btn btn-primary" href="cart.php?id=${row['product_id']}">Add to cart</a>
         </div>
     </div>
 </div>
