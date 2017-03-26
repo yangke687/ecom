@@ -6,6 +6,11 @@
 
       <header>
             <h1 class="text-center">Login</h1>
+            <?php if(has_message()): ?>
+                <div class="col-sm-4 col-sm-offset-4">
+                    <p class="alert alert-danger"><?php display_message(); ?></p>
+                </div>
+            <?php endif; ?>
         <div class="col-sm-4 col-sm-offset-5">         
             <form class="" action="#" method="post">
                 <?php login_user(); ?>
