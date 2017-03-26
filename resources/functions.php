@@ -140,3 +140,24 @@ function login_user(){
 
 	}
 }
+
+function send_message(){
+	if(isset($_POST['submit'])){
+		$from_name 	= $_POST['name'];
+		$subject 	= $_POST['subject'];
+		$email 		= $_POST['email'];
+		$message 	= $_POST['message'];
+
+		$to = "yourEmailAddr@gmail.com";
+		$headers = "From: ${from_name} ${email}";
+		$ret = mail($to, $subject, $message, $headers);
+		if(!$ret){
+			echo "error";
+		}
+		else{
+			//echo "sent";
+			set_message("Your Message has been sent!");
+		}
+	}
+
+}
