@@ -37,6 +37,8 @@
 
 	function cart(){
 
+		$total = 0;
+
 		foreach( $_SESSION as $name => $value ){
 			if($value>0){
 				if(substr($name,0,strlen('product_'))=='product_'){
@@ -50,9 +52,9 @@
 $prod = <<< DELIMETER
 <tr>
 	<td>${row['product_title']}</td>
-	<td>$${row['product_price']}</td>
+	<td>&#36; ${row['product_price']}</td>
 	<td>${value}</td>
-	<td>${sub}</td>
+	<td>&#36; ${sub}</td>
 	<td>
 		<a class="btn btn-warning" href="cart.php?remove=${row['product_id']}">
 			<span class="glyphicon glyphicon-minus"></span>
@@ -68,6 +70,7 @@ $prod = <<< DELIMETER
 DELIMETER;
 	echo $prod;
 		}
+		$_SESSION['item_total'] = $total += $sub;
 				}
 			}
 		}
