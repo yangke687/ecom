@@ -14,7 +14,7 @@
       <h1>Checkout</h1>
 
       <?php 
-        echo $_SESSION['product_1'];
+        //echo $_SESSION['product_1'];
       ?>
     
     <?php if(has_message()): ?>

@@ -36,9 +36,16 @@
 	}
 
 	function cart(){
-		$query = query("SELECT * FROM products");
-		confirm($query);
-		while( $row=fetch_array($query) ){
+
+		foreach( $_SESSION as $name => $value ){
+			if($value>0){
+				if(substr($name,0,strlen('product_'))=='product_'){
+					$length = strlen($name-strlen('product_'));
+					$id = substr($name,strlen('product_'),$length);
+					// query
+					$query = query("SELECT * FROM products WHERE product_id=".escape_string($id)."");
+					confirm($query);
+					while( $row=fetch_array($query) ){
 $prod = <<< DELIMETER
 <tr>
 	<td>${row['product_title']}</td>
@@ -46,19 +53,22 @@ $prod = <<< DELIMETER
 	<td>${row['product_quantity']}</td>
 	<td></td>
 	<td>
-		<a class="btn btn-warning" href="cart.php?remove=1">
+		<a class="btn btn-warning" href="cart.php?remove=${row['product_id']}">
 			<span class="glyphicon glyphicon-minus"></span>
 		</a>
-		<a href="#" class="btn btn-success">
+		<a href="cart.php?id=${row['product_id']}" class="btn btn-success">
 			<span class="glyphicon glyphicon-plus"></span>
 		</a>
-		<a class="btn btn-danger" href="cart.php?delete=1">
+		<a class="btn btn-danger" href="cart.php?delete=${row['product_id']}">
 			<span class="glyphicon glyphicon-remove"></span>
 		</a>
 	</td>
 </tr>
 DELIMETER;
 	echo $prod;
+		}
+				}
+			}
 		}
 	}
 
