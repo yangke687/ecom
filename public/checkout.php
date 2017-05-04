@@ -51,7 +51,9 @@
 
 <tr class="cart-subtotal">
 <th>Items:</th>
-<td><span class="amount">4</span></td>
+<td><span class="amount"><?php 
+  echo isset($_SESSION['item_quantity'])?$_SESSION['item_quantity']:$_SESSION['item_quantity']=0;
+?></span></td>
 </tr>
 <tr class="shipping">
 <th>Shipping and Handling</th>
