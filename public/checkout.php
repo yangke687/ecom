@@ -1,4 +1,5 @@
 <?php require_once "../resources/config.php"; ?>
+<?php require_once "./cart.php"; ?>
 <?php include TEMPLATE_FRONT . DS. "header.php"; ?>
 
 
@@ -11,6 +12,10 @@
 <div class="row">
 
       <h1>Checkout</h1>
+
+      <?php 
+        echo $_SESSION['product_1'];
+      ?>
     
     <?php if(has_message()): ?>
       <div class="col-md-12">
@@ -26,17 +31,11 @@
            <th>Price</th>
            <th>Quantity</th>
            <th>Sub-total</th>
-     
+           <th></th>
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>apple</td>
-                <td>$23</td>
-                <td>3</td>
-                <td>2</td>
-              
-            </tr>
+           <?php cart(); ?>
         </tbody>
     </table>
 </form>
