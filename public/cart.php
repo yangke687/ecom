@@ -46,12 +46,13 @@
 					$query = query("SELECT * FROM products WHERE product_id=".escape_string($id)."");
 					confirm($query);
 					while( $row=fetch_array($query) ){
+						$sub = $row['product_price'] * $value;
 $prod = <<< DELIMETER
 <tr>
 	<td>${row['product_title']}</td>
 	<td>$${row['product_price']}</td>
-	<td>${row['product_quantity']}</td>
-	<td></td>
+	<td>${value}</td>
+	<td>${sub}</td>
 	<td>
 		<a class="btn btn-warning" href="cart.php?remove=${row['product_id']}">
 			<span class="glyphicon glyphicon-minus"></span>
