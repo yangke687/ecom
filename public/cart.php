@@ -38,8 +38,14 @@
 
 	function cart(){
 
-		$total = 0;
-		$quantity = 0;
+		$item_total = 0;
+		$item_quantity = 0;
+
+		// item
+		$item_name = 1;
+		$item_number = 1;
+		$amount = 1;
+		$quantity = 1;
 
 		foreach( $_SESSION as $name => $value ){
 			if($value>0){
@@ -69,11 +75,22 @@ $prod = <<< DELIMETER
 		</a>
 	</td>
 </tr>
+<input type="hidden" name="item_name_${item_name}" value="hat">
+<input type="hidden" name="item_number_${item_number}" value="123">
+<input type="hidden" name="amount_${amount}" value="15.00">
+<input type="hidden" name="quantity_${quantity}" value="15.00">
 DELIMETER;
 	echo $prod;
+
+	// update item info
+	$item_name++;
+	$item_number++;
+	$amount++;
+	$quantity++;
+
 		}
-		$_SESSION['item_total'] = $total += $sub;
-		$_SESSION['item_quantity'] = $quantity += $value;
+		$_SESSION['item_total'] = $item_total += $sub;
+		$_SESSION['item_quantity'] = $item_quantity += $value;
 				}
 			}
 		}
