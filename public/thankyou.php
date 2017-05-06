@@ -5,7 +5,8 @@
 
 <?php 
 	
-	function report(){
+	function report($order_id){
+		if(!$order_id) die("order id was not found!");
 		//$total = 0;
 		$item_quantity = 0 ;
 
@@ -23,7 +24,7 @@
 						$sub = $prod_price * $value;
 						$item_quantity += $value;
 
-						$insert = query("INSERT INTO reports(product_id,product_price,product_quantity) VALUES('${id}','${prod_price}','${value}')");
+						$insert = query("INSERT INTO reports(product_id,order_id,product_price,product_quantity) VALUES('${id}','${order_id}','${prod_price}','${value}')");
 						confirm($insert);
 
 					}
@@ -48,10 +49,10 @@
 			isset($trans) && 
 			isset($stat)){
 			$query = query("INSERT INTO  orders (order_amount,order_transaction,order_status,order_currency) VALUES('${amount}','${trans}','${stat}','${currency}')");
-			confirm($query);
+			$last_id = last_id(); // defined in functions.php
 
 			//
-			report();
+			report($last_id);
 
 			//
 			//session_destroy();

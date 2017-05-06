@@ -163,3 +163,8 @@ function send_message(){
 	}
 
 }
+
+function last_id(){
+	global $conn;
+	return mysqli_insert_id($conn);
+}
