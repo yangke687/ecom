@@ -135,6 +135,8 @@ function login_user(){
 			redirect("login.php");
 		}
 		else{
+			$_SESSION['username'] = $username;
+			set_message("Welcome to Admin ${username}");
 			redirect("admin");
 		}
 

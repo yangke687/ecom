@@ -2,6 +2,13 @@
     require_once "../../resources/config.php";
     include(TEMPLATE_BACK . DS . "header.php");
 ?>
+
+<?php 
+    // admin security code
+    if( !isset($_SESSION['username']) ){
+        redirect("../../public/");
+    }
+ ?>
         <div id="page-wrapper">
 
             <div class="container-fluid">
