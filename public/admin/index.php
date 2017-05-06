@@ -26,6 +26,10 @@
                         $_SERVER['REQUEST_URI'] == '/ecom/public/admin/index.php' ){
                         include(TEMPLATE_BACK . DS . 'admin_content.php');
                     }
+
+                    if(isset($_GET['orders'])){
+                        include(TEMPLATE_BACK . DS . 'orders.php');
+                    }
                  ?>
 
             </div>
