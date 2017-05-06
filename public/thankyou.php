@@ -4,6 +4,34 @@
 ?>
 
 <?php 
+	
+	function report(){
+		//$total = 0;
+		$item_quantity = 0 ;
+
+		foreach( $_SESSION as $name => $value ){
+			if($value>0){
+				if(substr($name,0,strlen('product_'))=='product_'){
+
+					$length = strlen($name-strlen('product_'));
+					$id = substr($name,strlen('product_'),$length);
+					// query
+					$query = query("SELECT * FROM products WHERE product_id=".escape_string($id)."");
+					confirm($query);
+					while( $row=fetch_array($query) ){
+						$prod_price = $row['product_price'];
+						$sub = $prod_price * $value;
+						$item_quantity += $value;
+
+						$insert = query("INSERT INTO reports(product_id,product_price,product_quantity) VALUES('${id}','${prod_price}','${value}')");
+						confirm($insert);
+
+					}
+				}
+			}
+		}
+	}
+
 	if( isset($_GET['tx']) ){
 		if(isset($_GET['amt'])) 
 			$amount = $_GET['amt'];
@@ -23,7 +51,10 @@
 			confirm($query);
 
 			//
-			session_destroy();
+			report();
+
+			//
+			//session_destroy();
 		}
 	}
 	else{
