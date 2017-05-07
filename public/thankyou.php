@@ -20,11 +20,12 @@
 					$query = query("SELECT * FROM products WHERE product_id=".escape_string($id)."");
 					confirm($query);
 					while( $row=fetch_array($query) ){
+						$prod_title = $row['product_title'];
 						$prod_price = $row['product_price'];
 						$sub = $prod_price * $value;
 						$item_quantity += $value;
 
-						$insert = query("INSERT INTO reports(product_id,order_id,product_price,product_quantity) VALUES('${id}','${order_id}','${prod_price}','${value}')");
+						$insert = query("INSERT INTO reports(product_id,order_id,product_title,product_price,product_quantity) VALUES('${id}','${order_id}','${prod_title}','${prod_price}','${value}')");
 						confirm($insert);
 
 					}
@@ -55,7 +56,7 @@
 			report($last_id);
 
 			//
-			//session_destroy();
+			session_destroy();
 		}
 	}
 	else{
