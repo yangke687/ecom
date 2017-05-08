@@ -12,30 +12,37 @@
                 <thead>
 
                   <tr>
-                       <th>S.N</th>
-                       <th>Title</th>
-                       <th>Photo</th>
-                       <th>Quantity</th>
-                       <th>Invoice Number</th>
-                       <th>Order Date</th>
-                       <th>Status</th>
+                       <th>id</th>
+                       <th>amount</th>
+                       <th>transaction</th>
+                       <th>currency</th>
+                       <th>status</th>
                   </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>21</td>
-                        <td>Nikon 234</td>
-
-                        <td><img src="http://placehold.it/62x62" alt=""></td>
-                        <td>Cameras</td>
-                        <td>456464</td>
-                        <td>Jun 2039</td>
-                       <td>Completed</td>
-                    </tr>
-                    
-
+                    <?php display_orders(); ?>
                 </tbody>
             </table>
         </div>
     
     </div>
+
+<?php 
+  function display_orders(){
+    $query = query("SELECT * FROM orders");
+    confirm($query);
+
+    while($row=fetch_array($query)){
+$order = <<<DELIMETER
+<tr>
+  <td>${row['order_id']}</td>
+  <td>${row['order_amount']}</td>
+  <td>${row['order_transaction']}</td>
+  <td>${row['order_currency']}</td>
+  <td>${row['order_status']}</td>
+</tr>
+DELIMETER;
+      echo $order;
+    }
+  }
+?>
