@@ -1,10 +1,14 @@
-
-
     <div class="col-md-12">
         <div class="row">
             <h1 class="page-header">
                All Orders
             </h1>
+
+            <?php
+              if( has_message() ):
+            ?>
+            <p class="alert alert-success"><?php display_message(); ?></p>
+            <?php endif; ?>
         </div>
 
         <div class="row">
@@ -17,14 +21,14 @@
                        <th>transaction</th>
                        <th>currency</th>
                        <th>status</th>
+                       <th></th>
                   </tr>
                 </thead>
                 <tbody>
                     <?php display_orders(); ?>
                 </tbody>
             </table>
-        </div>
-    
+        </div>    
     </div>
 
 <?php 
@@ -40,6 +44,9 @@ $order = <<<DELIMETER
   <td>${row['order_transaction']}</td>
   <td>${row['order_currency']}</td>
   <td>${row['order_status']}</td>
+  <td>
+    <a class="btn btn-danger" href="../../resources/templates/back/delete_order.php?order_id=${row['order_id']}"><span class="glyphicon glyphicon-remove"></span></a>
+  </td>
 </tr>
 DELIMETER;
       echo $order;
