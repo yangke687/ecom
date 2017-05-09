@@ -9,7 +9,7 @@ $prod = <<< DELIMETER
             <td>${row['product_id']}</td>
             <td>${row['product_title']}</td>
             <td>
-              <img src="${row['product_image']}" alt="">
+              <img src="../../resources/uploads/${row['product_image']}" alt="" height="150">
             </td>
             <td>Category</td>
             <td>${row['product_price']}</td>

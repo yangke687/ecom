@@ -61,35 +61,19 @@
             <option value="">Select Category</option>
            
         </select>
-
-
-</div>
-
-
-
-
-
-    <!-- Product Brands-->
-
-
-    <div class="form-group">
-      <label for="product-title">Product Brand</label>
-         <select name="product_brand" id="" class="form-control">
-            <option value="">Select Brand</option>
-         </select>
     </div>
 
-    <input type="hidden" name="product_short_desc" />
-    <input type="hidden" name="product_quantity" />
+    <div class="form-group">
+      <label for="product-quantity">Product Quantity</label>
+      <input type="number" name="product_quantity" class="form-control" value="1">
+    </div>
 
-
-<!-- Product Tags -->
-
+    <!-- Product Tags -->
 
     <div class="form-group">
-          <label for="product-title">Product Keywords</label>
+          <label for="product-title">Product Short Description</label>
           <hr>
-        <input type="text" name="product_tags" class="form-control">
+        <input type="text" name="product_short_desc" class="form-control">
     </div>
 
     <!-- Product Image -->
