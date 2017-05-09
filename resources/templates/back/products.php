@@ -14,6 +14,16 @@ $prod = <<< DELIMETER
             <td>Category</td>
             <td>${row['product_price']}</td>
             <td>${row['product_quantity']}</td>
+            <td>
+              <a class="btn btn-success" href="index.php?edit_product&id=${row['product_id']}">
+                <span class="glyphicon glyphicon-edit"></span>
+                Edit
+              </a>
+              <a href="" class="btn btn-danger" href="index.php?delete_product&id=${row['product_id']}">
+                <span class="glyphicon glyphicon-trash"></span>
+                Delete
+              </a>
+            </td>
         </tr>
 DELIMETER;
       echo $prod;
@@ -42,6 +52,7 @@ DELIMETER;
            <th>Category</th>
            <th>Price</th>
            <th>Quantity</th>
+           <th></th>
       </tr>
     </thead>
     <tbody>
