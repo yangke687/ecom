@@ -19,7 +19,7 @@ $prod = <<< DELIMETER
                 <span class="glyphicon glyphicon-edit"></span>
                 Edit
               </a>
-              <a href="" class="btn btn-danger" href="index.php?delete_product&id=${row['product_id']}">
+              <a class="btn btn-danger" href="../../resources/templates/back/delete_product.php?product_id=${row['product_id']}">
                 <span class="glyphicon glyphicon-trash"></span>
                 Delete
               </a>
@@ -40,6 +40,11 @@ DELIMETER;
    All Products
 
 </h1>
+            <?php
+              if( has_message() ):
+            ?>
+            <p class="alert alert-success"><?php display_message(); ?></p>
+            <?php endif; ?>
 <table class="table table-hover">
 
 
