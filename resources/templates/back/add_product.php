@@ -1,4 +1,4 @@
-
+<?php add_product(); ?>
 <div class="col-md-12">
 
 <div class="row">
@@ -37,12 +37,6 @@
       </div>
     </div>
 
-
-
-
-    
-    
-
 </div><!--Main Content-->
 
 
@@ -63,7 +57,7 @@
     <div class="form-group">
          <label for="product-title">Product Category</label>
           <hr>
-        <select name="product_category" id="" class="form-control">
+        <select name="product_category_id" id="" class="form-control">
             <option value="">Select Category</option>
            
         </select>
@@ -84,6 +78,9 @@
             <option value="">Select Brand</option>
          </select>
     </div>
+
+    <input type="hidden" name="product_short_desc" />
+    <input type="hidden" name="product_quantity" />
 
 
 <!-- Product Tags -->

@@ -139,7 +139,6 @@ function login_user(){
 			set_message("Welcome to Admin ${username}");
 			redirect("admin");
 		}
-
 	}
 }
 
@@ -168,3 +167,35 @@ function last_id(){
 	global $conn;
 	return mysqli_insert_id($conn);
 }
+
+function add_product(){
+	if(isset($_POST['publish'])){
+		$prod_title = escape_string($_POST['product_title']);
+		$prod_cat_id = escape_string($_POST['product_category_id']);
+		$prod_price = escape_string($_POST['product_price']);
+		$prod_desc = escape_string($_POST['product_description']);
+		$prod_short_desc = escape_string($_POST['product_short_desc']);
+		$prod_quantity = escape_string($_POST['product_quantity']);
+		$prod_image = escape_string($_FILES['file']['name']);
+		$image_temp_location = escape_string($_FILES['file']['tmp_name']); 
+
+		// upload file
+		if( $image_temp_location ){
+			move_uploaded_file($image_temp_location,UPLOAD_DIRECTORY . DS . $prod_image);
+		}
+
+		// insert query
+		$query = query("INSERT INTO products(product_title, product_category_id, product_price, product_description, short_desc, product_quantity, product_image) VALUES('${prod_title}','${prod_cat_id}','${prod_price}','${prod_desc}','${prod_short_desc}','${prod_quantity}','${prod_image}')");
+		confirm($query);
+		$last_id = last_id();
+
+		set_message("A New Product with id ${last_id} was Added!");
+		redirect("index.php?products");
+	}
+}
+
+
+
+
+
+
