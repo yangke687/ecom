@@ -1,4 +1,25 @@
+<?php 
+  function display_products(){
+    $query = query("SELECT * FROM products");
+    confirm($query);
 
+    while($row=fetch_array($query)){
+$prod = <<< DELIMETER
+        <tr>
+            <td>${row['product_id']}</td>
+            <td>${row['product_title']}</td>
+            <td>
+              <img src="${row['product_image']}" alt="">
+            </td>
+            <td>Category</td>
+            <td>${row['product_price']}</td>
+            <td>${row['product_quantity']}</td>
+        </tr>
+DELIMETER;
+      echo $prod;
+    }
+  }
+?>
 
 
 <div class="row">
@@ -17,24 +38,15 @@
       <tr>
            <th>Id</th>
            <th>Title</th>
+           <th>Image</th>
            <th>Category</th>
            <th>Price</th>
+           <th>Quantity</th>
       </tr>
     </thead>
     <tbody>
-
-      <tr>
-            <td>20</td>
-            <td>Nikon 234 <br>
-              <img src="http://placehold.it/62x62" alt="">
-            </td>
-            <td>Category</td>
-            <td>123</td>
-        </tr>
-      
-
-
-  </tbody>
+      <?php display_products(); ?>
+    </tbody>
 </table>
 
 </div>
