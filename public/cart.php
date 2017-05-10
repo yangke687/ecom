@@ -57,9 +57,11 @@
 					confirm($query);
 					while( $row=fetch_array($query) ){
 						$sub = $row['product_price'] * $value;
+						$display_product_image = display_image($row['product_image']);
 $prod = <<< DELIMETER
 <tr>
-	<td>${row['product_title']}</td>
+	<td>${row['product_title']} <br></td>
+	<td><img src="../resources/${display_product_image}" alt=""></td>
 	<td>&#36; ${row['product_price']}</td>
 	<td>${value}</td>
 	<td>&#36; ${sub}</td>
