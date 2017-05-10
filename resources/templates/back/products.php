@@ -5,12 +5,13 @@
     confirm($query);
 
     while($row=fetch_array($query)){
+      $product_display_image = display_image( $row['product_image'] );
 $prod = <<< DELIMETER
         <tr>
             <td>${row['product_id']}</td>
             <td>${row['product_title']}</td>
             <td>
-              <img src="../../resources/uploads/${row['product_image']}" alt="" height="150">
+              <img src="../../resources/${product_display_image}" alt="" height="150">
             </td>
             <td>${row['category_title']}</td>
             <td>${row['product_price']}</td>

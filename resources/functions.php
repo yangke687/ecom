@@ -47,11 +47,11 @@ function get_products(){
 	confirm($query);
 
 	while($row=fetch_array($query)){
-
+$product_display_iamge = display_image( $row['product_image'] );
 $product = <<<DELIMETER
 <div class="col-sm-4 col-lg-4 col-md-4">
     <div class="thumbnail">
-        <img src="${row['product_image']}" alt="">
+        <img src="../resources/${product_display_iamge}" alt="">
         <div class="caption">
             <h4 class="pull-right">&#36;${row['product_price']}</h4>
             <h4><a href="item.php?id=${row['product_id']}">${row['product_title']}</a>
@@ -206,6 +206,9 @@ DELIMETER;
 	}
 }
 
+function display_image( $picture ){
+	return "uploads" .DS . $picture;
+}
 
 
 
