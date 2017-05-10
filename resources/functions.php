@@ -194,6 +194,18 @@ function add_product(){
 	}
 }
 
+function show_categories(){
+	$query = query("SELECT * FROM categories");
+	confirm($query);
+
+	while($row=fetch_array($query)){
+$cat = <<< DELIMETER
+ <option value="${row['cat_id']}">${row['cat_title']}</option>
+DELIMETER;
+	echo $cat;
+	}
+}
+
 
 
 
