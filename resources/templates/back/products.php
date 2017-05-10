@@ -1,6 +1,7 @@
 <?php 
   function display_products(){
-    $query = query("SELECT * FROM products");
+    // join categories table
+    $query = query("SELECT products.*,categories.cat_title as category_title FROM products JOIN categories ON products.product_category_id=categories.cat_id");
     confirm($query);
 
     while($row=fetch_array($query)){
@@ -11,7 +12,7 @@ $prod = <<< DELIMETER
             <td>
               <img src="../../resources/uploads/${row['product_image']}" alt="" height="150">
             </td>
-            <td>Category</td>
+            <td>${row['category_title']}</td>
             <td>${row['product_price']}</td>
             <td>${row['product_quantity']}</td>
             <td>
