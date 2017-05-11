@@ -1,16 +1,21 @@
+<?php 
+  update_product(); 
+  
+  // fetch product query
+  if( isset($_GET['id']) ){
+    $query = query("SELECT * FROM  products WHERE product_id = ".escape_string($_GET['id']));
+    confirm($query);
 
-
-
-
-
-
-
+    while ($row=fetch_array($query)) {
+      $prod = $row;
+    }
+  }
+?>
 <div class="col-md-12">
 
 <div class="row">
 <h1 class="page-header">
-   Add Product
-
+   Edit Product
 </h1>
 </div>
                
@@ -23,14 +28,16 @@
 
 <div class="form-group">
     <label for="product-title">Product Title </label>
-        <input type="text" name="product_title" class="form-control">
+        <input type="text" name="product_title" class="form-control" value="<?php echo $prod['product_title']; ?>">
        
     </div>
 
 
     <div class="form-group">
            <label for="product-title">Product Description</label>
-      <textarea name="product_description" id="" cols="30" rows="10" class="form-control"></textarea>
+      <textarea name="product_description" id="" cols="30" rows="10" class="form-control"><?php 
+        echo $prod['product_description'];
+      ?></textarea>
     </div>
 
 
@@ -39,15 +46,9 @@
 
       <div class="col-xs-3">
         <label for="product-price">Product Price</label>
-        <input type="number" name="product_price" class="form-control" size="60">
+        <input type="number" name="product_price" class="form-control" size="60" value="<?php echo $prod['product_price']; ?>">
       </div>
     </div>
-
-
-
-
-    
-    
 
 </div><!--Main Content-->
 
@@ -60,7 +61,7 @@
      
      <div class="form-group">
        <input type="submit" name="draft" class="btn btn-warning btn-lg" value="Draft">
-        <input type="submit" name="publish" class="btn btn-primary btn-lg" value="Publish">
+        <input type="submit" name="update" class="btn btn-primary btn-lg" value="Update">
     </div>
 
 
@@ -69,41 +70,29 @@
     <div class="form-group">
          <label for="product-title">Product Category</label>
           <hr>
-        <select name="product_category" id="" class="form-control">
-            <option value="">Select Category</option>
-           
+        <select name="product_category_id" id="" class="form-control">
+          <option value="">Select Category</option>
+           <?php show_categories(); ?>
         </select>
-
-
-</div>
-
-
-
-
-
-    <!-- Product Brands-->
-
-
-    <div class="form-group">
-      <label for="product-title">Product Brand</label>
-         <select name="product_brand" id="" class="form-control">
-            <option value="">Select Brand</option>
-         </select>
     </div>
 
+    <div class="form-group">
+      <label for="product-quantity">Product Quantity</label>
+      <input type="number" name="product_quantity" class="form-control" value="<?php echo $prod['product_quantity']; ?>">
+    </div>
 
-<!-- Product Tags -->
-
+    <!-- Product Tags -->
 
     <div class="form-group">
-          <label for="product-title">Product Keywords</label>
+          <label for="product-title">Product Short Description</label>
           <hr>
-        <input type="text" name="product_tags" class="form-control">
+        <input type="text" name="product_short_desc" class="form-control" value="<?php echo $prod['short_desc']; ?>">
     </div>
 
     <!-- Product Image -->
     <div class="form-group">
         <label for="product-title">Product Image</label>
+        <img class="img-thumbnail" src="../../resources/<?php echo display_image($prod['product_image']); ?>" alt="">
         <input type="file" name="file">
       
     </div>
@@ -116,11 +105,4 @@
     
 </form>
 
-
-
-                
-
-
-
-            </div>
-            <!-- /.container-fluid -->
+</div>
