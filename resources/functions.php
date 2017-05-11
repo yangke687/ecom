@@ -196,6 +196,43 @@ function add_product(){
 	}
 }
 
+function update_product(){
+	if( isset($_POST['update']) && isset($_GET['id']) ){
+		$prod_title = escape_string($_POST['product_title']);
+		$prod_cat_id = escape_string($_POST['product_category_id']);
+		$prod_price = escape_string($_POST['product_price']);
+		$prod_desc = escape_string($_POST['product_description']);
+		$prod_short_desc = escape_string($_POST['product_short_desc']);
+		$prod_quantity = escape_string($_POST['product_quantity']);
+		$prod_image = escape_string($_FILES['file']['name']);
+		$image_temp_location = escape_string($_FILES['file']['tmp_name']); 
+
+		// upload file
+		if( $image_temp_location ){
+			move_uploaded_file($image_temp_location,UPLOAD_DIRECTORY . DS . $prod_image);
+		}
+
+		// update query
+		$query = "UPDATE products SET ";
+		$query .= "product_title 		= '${prod_title}', ";
+		if( $prod_cat_id )
+			$query .= "product_category_id 	= '${prod_cat_id}', ";
+		$query .= "product_price 		= '${prod_price}', ";
+		$query .= "product_description 	= '${prod_desc}', ";
+		$query .= "short_desc 			= '${prod_short_desc}', ";
+		if( $prod_image )
+			$query .= "product_image 		= '${prod_image}', ";
+		$query .= "product_quantity 	= '${prod_quantity}' ";
+		$query .= " WHERE product_id = ".escape_string($_GET['id']);
+
+		$send_update_query = query($query);
+		confirm($send_update_query);
+		
+		set_message("Product has been updated!");
+		redirect("index.php?products");
+	}
+}
+
 function show_categories(){
 	$query = query("SELECT * FROM categories");
 	confirm($query);
