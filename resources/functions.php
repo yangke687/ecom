@@ -233,14 +233,21 @@ function update_product(){
 	}
 }
 
-function show_categories(){
+function show_categories($product_cat_id=null){
 	$query = query("SELECT * FROM categories");
 	confirm($query);
 
 	while($row=fetch_array($query)){
+		
+		$selected = ( $row['cat_id'] == $product_cat_id ) ? 'selected' : '';
+		echo 'here';
+		echo $selected;
+
 $cat = <<< DELIMETER
- <option value="${row['cat_id']}">${row['cat_title']}</option>
+ <option value="${row['cat_id']}" ${selected}>${row['cat_title']}</option>
 DELIMETER;
+
+
 	echo $cat;
 	}
 }

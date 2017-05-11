@@ -72,7 +72,7 @@
           <hr>
         <select name="product_category_id" id="" class="form-control">
           <option value="">Select Category</option>
-           <?php show_categories(); ?>
+           <?php show_categories($prod['product_category_id']); ?>
         </select>
     </div>
 
