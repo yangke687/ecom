@@ -263,10 +263,33 @@ $cat = <<<DELIMETER
 <tr>
 	<td>${row['cat_id']}</td>
 	<td>${row['cat_title']}</td>
-	<td></td>
+	<td>
+		<a href="#" class="btn btn-danger">
+			<span class="glyphicon glyphicon-trash"></span>
+			Delete
+		</a>
+	</td>
 </tr>
 DELIMETER;
 		echo $cat;
+	}
+}
+
+function add_category(){
+	if( isset($_POST['add_category']) ){
+		$cat_title = $_POST['category_title'];
+		if( ! $cat_title ) die("category title can not be empty!");
+		$query = query("INSERT INTO  categories(cat_title) VALUES('${cat_title}')");
+		confirm($query);
+
+		//
+		if( mysqli_affected_rows($query)==0 ){
+			set_message("Nothing Worked!");
+		}
+
+		//
+		set_message("Add category successfully!");
+		redirect("index.php?categories");
 	}
 }
 

@@ -1,7 +1,13 @@
-
+<?php 
+    add_category();
+ ?>
 <h1 class="page-header">
   Product Categories
 </h1>
+
+<?php if( has_message() ): ?>
+    <p class="alert alert-success"><?php display_message(); ?></p>
+<?php endif; ?>
 
 
 <div class="col-md-4">
@@ -10,12 +16,12 @@
     
         <div class="form-group">
             <label for="category-title">Title</label>
-            <input type="text" class="form-control">
+            <input type="text" name="category_title" class="form-control">
         </div>
 
         <div class="form-group">
             
-            <input type="submit" class="btn btn-primary" value="Add Category">
+            <input type="submit" name="add_category" class="btn btn-primary" value="Add Category">
         </div>      
 
 
