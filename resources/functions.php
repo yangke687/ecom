@@ -234,7 +234,7 @@ function update_product(){
 }
 
 function show_categories($product_cat_id=null){
-	$query = query("SELECT * FROM categories");
+	$query = query("SELECT * FROM categories WHERE cat_stat = 1");
 	confirm($query);
 
 	while($row=fetch_array($query)){
@@ -255,7 +255,7 @@ function display_image( $picture ){
 }
 
 function show_categories_in_admin(){
-	$query = query("SELECT * FROM categories");
+	$query = query("SELECT * FROM categories WHERE cat_stat = 1");
 	confirm($query);
 
 	while($row=fetch_array($query)){
@@ -264,7 +264,7 @@ $cat = <<<DELIMETER
 	<td>${row['cat_id']}</td>
 	<td>${row['cat_title']}</td>
 	<td>
-		<a href="#" class="btn btn-danger">
+		<a href="../../resources/templates/back/delete_category.php?id=${row['cat_id']}" class="btn btn-danger">
 			<span class="glyphicon glyphicon-trash"></span>
 			Delete
 		</a>
@@ -283,13 +283,7 @@ function add_category(){
 		confirm($query);
 
 		//
-		if( mysqli_affected_rows($query)==0 ){
-			set_message("Nothing Worked!");
-		}
-
-		//
 		set_message("Add category successfully!");
-		redirect("index.php?categories");
 	}
 }
 
