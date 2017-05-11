@@ -240,8 +240,6 @@ function show_categories($product_cat_id=null){
 	while($row=fetch_array($query)){
 		
 		$selected = ( $row['cat_id'] == $product_cat_id ) ? 'selected' : '';
-		echo 'here';
-		echo $selected;
 
 $cat = <<< DELIMETER
  <option value="${row['cat_id']}" ${selected}>${row['cat_title']}</option>
@@ -254,6 +252,22 @@ DELIMETER;
 
 function display_image( $picture ){
 	return "uploads" .DS . $picture;
+}
+
+function show_categories_in_admin(){
+	$query = query("SELECT * FROM categories");
+	confirm($query);
+
+	while($row=fetch_array($query)){
+$cat = <<<DELIMETER
+<tr>
+	<td>${row['cat_id']}</td>
+	<td>${row['cat_title']}</td>
+	<td></td>
+</tr>
+DELIMETER;
+		echo $cat;
+	}
 }
 
 
