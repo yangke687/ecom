@@ -67,7 +67,7 @@ DELIMETER;
 }
 
 function get_categories(){
-	$query = query("SELECT * FROM categories");
+	$query = query("SELECT * FROM categories WHERE cat_stat=1");
 	confirm($query);
 
 	while($row=fetch_array($query)){
