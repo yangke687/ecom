@@ -4,7 +4,12 @@
 
 </h1>
 
-<h3 class="bg-success"><?php display_message(); ?></h3>
+<?php
+  if( has_message() ):
+?>
+<p class="alert alert-success"><?php display_message(); ?></p>
+<?php endif; ?>
+
 <table class="table table-hover">
 
 
@@ -17,6 +22,7 @@
            <th>Price</th>
            <th>Product title</th>
            <th>Product quantity</th>
+           <th></th>
       </tr>
     </thead>
     <tbody>
