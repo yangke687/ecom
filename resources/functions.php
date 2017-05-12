@@ -287,6 +287,31 @@ function add_category(){
 	}
 }
 
+function display_users(){
+	$query = query("SELECT * FROM users");
+	confirm($query);
+
+	while($row=fetch_array($query)){
+		$user_id = $row['user_id'];
+		$username = $row['username'];
+		$email = $row['email'];
+		$password = $row['password'];
+$user = <<< DELIMETER
+<tr>
+	<td>${user_id}</td>
+	<td>${username}</td>
+	<td>${email}</td>
+	<td>
+		<a href="../../resources/templates/back/delete_user.php?id=${user_id}" class="btn btn-danger">
+			<span class="glyphicon glyphicon-trash"></span> Delete
+		</a>
+	</td>
+</tr>
+DELIMETER;
+		echo $user;
+	}
+}
+
 
 
 

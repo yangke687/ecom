@@ -5,6 +5,11 @@
                             Users
                          
                         </h1>
+                        
+                        <?php if( has_message() ): ?>
+                            <p class="alert alert-success"><?php display_message(); ?></p>
+                        <?php endif; ?>
+
                           <p class="bg-success">
                             <?php //echo $message; ?>
                         </p>
@@ -18,43 +23,13 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Photo</th>
                                         <th>Username</th>
-                                        <th>First Name</th>
-                                        <th>Last Name </th>
+                                        <th>Email</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
-                                <?php if(isset($users)): ?>
-                                <?php foreach($users as $user): ?>
-
-                                    <tr>
-
-                                        <td>2</td>
-                                        <td><img class="admin-user-thumbnail user_image" src="placehold.it/62x62" alt=""></td>
-                                        
-                                        <td>Rico
-                                              <div class="action_links">
-
-                                                <a href="">Delete</a>
-                                                <a href="">Edit</a>
-                    
-                                                
-                                            </div>
-                                        </td>
-                                        
-                                        
-                                        <td>Edwin</td>
-                                       <td>Diaz</td>
-                                    </tr>
-
-
-                                <?php endforeach; ?>
-                                <?php endif; ?>
-
-                                    
-                                    
+                                    <?php display_users(); ?>                
                                 </tbody>
                             </table> <!--End of Table-->
                         
