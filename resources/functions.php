@@ -331,6 +331,24 @@ function add_user(){
 	}
 }
 
+function display_reports(){
+	$query = query("SELECT * FROM reports");
+	confirm($query);
+
+	while( $row=  fetch_array($query) )  {
+$report = <<< DELIMETER
+<tr>
+	<td>${row['report_id']}</td>
+	<td>${row['product_id']}</td>
+	<td>${row['order_id']}</td>
+	<td>${row['product_price']}</td>
+	<td>${row['product_title']}</td>
+	<td>${row['product_quantity']}</td>
+</tr>
+DELIMETER;
+		echo $report;
+	}
+}
 
 
 
